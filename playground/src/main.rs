@@ -38,17 +38,26 @@ impl Add for MyInteger {
 
 fn main() {
     let a = MyInteger::from(32);
-    let b = MyInteger::from(10);
 
     //Code completion was displaied "assert_i32"
+    //But can't compile.
+
+    // error[E0599]: no method named `assert_i32` found for struct `MyInteger` in the current scope
+    //   --> playground\src\main.rs:44:7
+    //   |
+    //   3  | struct MyInteger(Integer);
+    // | ---------------- method `assert_i32` not found for this struct
+    // ...
+    //   44 |     a.assert_i32(&42)
+    //     |       ^^^^^^^^^^ method not found in `MyInteger`
     a.assert_i32(&42)
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use library::integer_test_helper;
 
+    //Can compile and run test successfully.
     #[test]
     fn test_add() {
         let a = MyInteger::from(32);
